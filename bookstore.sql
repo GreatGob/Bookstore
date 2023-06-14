@@ -5,7 +5,7 @@ drop database bookstore;
 
 use bookstore;
 
-/* -- Tạo và xóa bảng books
+-- Tạo và xóa bảng books
 create table books (
 		book_id int, 
         title varchar (50), 
@@ -17,9 +17,8 @@ create table books (
  	);
 
 drop table books;
-*/
 
-/* -- Tạo dữ liệu và cập nhật dữ liệu cho bảng
+-- Tạo dữ liệu và cập nhật dữ liệu cho bảng
 insert into books (book_id, title, author, pages, genres, reviews, rating)
 values 
 (1, 'test title 1', 'test author 1', 100, 'test genres 1', 'test reviews 1', 1.5),
@@ -47,9 +46,9 @@ update books set rating = 6.8
 where book_id = 2;
 update books set rating = 7.8
 where book_id = 3;
-*/
 
-/*  -- Truy vấn dữ liệu có điều kiện
+
+-- Truy vấn dữ liệu có điều kiện
 select * from books where rating = 5;
 select * from books where rating > 5;
 select * from books where rating < 5;
@@ -69,16 +68,16 @@ add datetime_sold datetime;
 insert into books (date_sold, time_sold, datetime_sold)
 values (current_date(), current_time(), now());
 
--- update books 
--- set date_sold = current_date(),
--- 	time_sold = current_time(),
--- 	datetime_sold = now()
--- where book_id = 2;
+update books 
+set date_sold = current_date(),
+	time_sold = current_time(),
+	datetime_sold = now()
+where book_id = 2;
 
--- delete from books where book_id is null;
-*/
+delete from books where book_id is null;
 
-/*  -- Cập nhật nhiều dữ liệu cho bảng
+
+-- Cập nhật nhiều dữ liệu cho bảng
 alter table books
 add constraint
 unique(book_id);
@@ -100,9 +99,9 @@ values ('End game', 'Gray Jones');
 
 insert into categories (category_name)
 values ('reality');
-*/
 
-/*  -- Functions in sql 
+
+-- Functions in sql 
 
 select count(rating) as the_amount_of_rating
 from books;
@@ -112,24 +111,24 @@ from books;
 
 select avg(rating) as avg_rating
 from books;
-*/
 
-/* -- CONCAT trong MySQL là một hàm được sử dụng để ghép nối các chuỗi (string) trong câu lệnh truy vấn SQL.
+
+-- CONCAT trong MySQL là một hàm được sử dụng để ghép nối các chuỗi (string) trong câu lệnh truy vấn SQL.
 
 select concat(reviews, ' and ', rating, ' point') as reviews_and_rating
 from books;
-*/
 
-/* -- logical in mysql: and, or, between, not, in 
+
+-- logical in mysql: and, or, between, not, in 
 
 select * from books
 where not title = 'End game';
 
 select * from books
 where title = 'End game' or title = 'test title 1';
-*/
 
-/* -- wildcards (ký tự đại diện) là các ký tự đặc biệt được sử dụng để tìm kiếm 
+
+-- wildcards (ký tự đại diện) là các ký tự đặc biệt được sử dụng để tìm kiếm 
 -- các giá trị tương đồng trong một cột trong câu lệnh SELECT hoặc WHERE.
 -- Có 3 loại: 
 -- 	1. % : Đại diện cho bất kỳ chuỗi ký tự nào (bao gồm cả không có ký tự).
@@ -153,7 +152,7 @@ from categories where category_name like '_e%';
 
 select *
 from categories where category_name not like '[vsr]%';
-*/
+
 
 /* cau lenh nay khong thuc hien duoc
 select *
@@ -172,7 +171,7 @@ select *
 from categories where category_name like '%[^a]%';
 */
 
-/* -- order by clause
+-- order by clause
 select *
 from books order by rating desc;
 
@@ -181,9 +180,8 @@ from books order by rating asc, book_id desc; -- dung khi trung lap ve gia tri r
 
 select *
 from categories order by category_id desc;
-*/
 
-/* -- limit clause
+-- limit clause
 select *
 from categories limit 3;
 
@@ -205,9 +203,9 @@ from categories limit 3, 1;
 select *
 from categories limit 3, 2;
 -- câu lệnh này sẽ bỏ qua 3 dòng đầu tiên của bảng và trả về 2 dòng tiep theo.
-*/
 
-/* -- create new table employees and insert data for it
+
+-- create new table employees and insert data for it
 create table employees (
 	employee_id int primary key auto_increment,
     first_name varchar(50),
@@ -223,7 +221,7 @@ values 	('Khan', 'Nguyen', 10, now()),
         ('Hung', 'Nguyen', 10, now());
 */
 
-/* -- set up for using union
+-- set up for using union
 update customers
 set age =
 	case 
@@ -244,11 +242,11 @@ set age =
         when employee_id = 3 then 36
 	end
 where employee_id in (1, 2, 3);
-*/
 
-/* -- unions clause: 
+
+-- unions clause: 
 -- UNION là một toán tử kết hợp (combining operator) được sử dụng
-để kết hợp các kết quả của hai hoặc nhiều câu lệnh SELECT.
+-- để kết hợp các kết quả của hai hoặc nhiều câu lệnh SELECT.
 -- union avoid duplicated
 select age from customers
 union
@@ -257,9 +255,9 @@ select age from employees;
 select age from customers
 union all
 select age from employees;
-*/
 
-/* -- TRIGGERS
+
+-- TRIGGERS
 ALTER TABLE employees
 MODIFY COLUMN salary DECIMAL(10,2) AFTER hourly_working;
 
@@ -281,7 +279,7 @@ where employee_id = 3;
 
 update employees
 set hourly_working = hourly_working + 1;
-*/
+
 
 select *from customers;
 
@@ -290,7 +288,7 @@ show triggers;
 select *from employees;
 
 
-/* -- Tạo và xóa bảng customers
+-- Tạo và xóa bảng customers
 create table customers (
 customer_id int,
 customer_name varchar(50), 
@@ -304,9 +302,9 @@ values 	(1, 'test_name_1', 10, current_date()),
 		(3, 'test_name_3', 20, '2023-04-15');
        
 drop table customers;
-*/
 
-/* -- Thêm dữ liệu và điều kiện trong bảng
+
+-- Thêm dữ liệu và điều kiện trong bảng
 alter table customers
 add constrai  nt check_customer_age check (customer_age >=10);
 
@@ -341,9 +339,9 @@ values 	(1, 'trending', 10),
 		(2, 'virtual', 20);
 
 select * from categories where category_id = 2;
-*/
 
-/* -- Vì bảng đã có dữ liệu nên không thể thêm thuộc tính auto_increment trực tiếp vào cột category_id
+
+-- Vì bảng đã có dữ liệu nên không thể thêm thuộc tính auto_increment trực tiếp vào cột category_id
 
 -- Bước 1: Tạo bảng tạm thời và sao chép dữ liệu từ bảng gốc vào bảng tạm thời. 
 create table categories_temp as select * from categories;
@@ -365,9 +363,9 @@ select category_name from categories_temp;
 
 -- Bước 5: Xóa bảng tạm thời
 drop table categories_temp;
- */
+
  
-/* -- Test với id bắt đầu bằng 1000
+-- Test với id bắt đầu bằng 1000
 alter table categories
 auto_increment = 1000;
 
@@ -375,23 +373,23 @@ insert into categories (category_name, category_description)
 values 	('social', 'no description'),
 			('influencer', 'no description'),
 			('musical', '');
-*/
 
-/* -- Thêm khóa ngoại cho một cột trong bảng đã có dữ liệu.
+
+-- Thêm khóa ngoại cho một cột trong bảng đã có dữ liệu.
 -- Bước 1: Tạo cột category_id kiểu INT trong bảng books để lưu trữ khóa ngoại.
 alter table books add column category_id int;
 
 -- Bước 2: Thêm ràng buộc khóa ngoại vào bảng books để liên kết với bảng categories
 alter table books add constraint fk_books_categories
 foreign key (category_id) references categories(category_id);
-*/
+
 
 /* -- Liên kết ngược lại trong bảng categories
 alter table categories add constraint fk_categories_books
 foreign key (category_id) references books(category_id);
  */
  
-/* -- Sử dụng joins: inner, left, right, self
+-- Sử dụng joins: inner, left, right, self
 
 -- INNER JOIN trả về tập hợp các bản ghi trong hai bảng có khóa chính được kết hợp với nhau. 
 -- Kết quả chỉ chứa các bản ghi có khóa chính giống nhau trong cả hai bảng.
@@ -472,9 +470,9 @@ select a.employee_id, a.first_name, a.last_name,
 from employees as a
 left join employees as b
 on a.supervisor_id = b.employee_id;
-*/
 
-/* -- Sử dụng views trong mysql
+
+-- Sử dụng views trong mysql
 -- a virtual tablr based on the result-set of an SQL statement
 -- the fields in a view are fields from one or more real table in db
 -- They're not real tables, but can be interacted with as if they were
@@ -501,9 +499,9 @@ select email from customers;
 
 insert into customers (email)
 values ('test_view_customer_emails@gmail.com');
-*/
+
  
-/* -- Index (binary tree data structure)
+-- Index (binary tree data structure)
 -- Indexes are used to find values with thin a specific column are more quickly
 -- Mysql normally searches sequentially through a column
 -- The longer the column, the more expensive the operation is 
@@ -522,7 +520,7 @@ alter table employees
 drop index last_name_idx;
 
 show indexes from employees;
-*/
+
 
 /* -- More about Index
 Index trong MySQL là một cơ chế tối ưu hóa để tăng tốc độ truy vấn của cơ sở dữ liệu. 
@@ -541,7 +539,7 @@ phải được thực hiện một cách cẩn thận và tùy thuộc vào cá
 và cách mà dữ liệu được sử dụng.
 */
 
-/* -- subquery: query(subquery)
+-- subquery: query(subquery)
 alter table employees
 add column salary float;
 
@@ -569,9 +567,9 @@ select distinct referral_id
 from customers 
 where referral_id is not null
 );
-*/
 
-/* -- define: GROUP BY
+
+-- define: GROUP BY
 -- GROUP BY trong MySQL là một câu lệnh được sử dụng để nhóm các bản ghi có 
 -- cùng giá trị trong một hoặc nhiều cột trong bảng. 
 -- Các giá trị được nhóm lại dựa trên các cột được chỉ định trong phần GROUP BY. 
@@ -610,9 +608,9 @@ select count(amount), customer_id
 from transactions
 group by customer_id
 having count(amount) > 1 and customer_id is not null; -- having thay cho where khi sử dụn group by
-*/
 
-/* -- define ROLLUP
+
+-- define ROLLUP
 -- ROLLUP là một câu lệnh trong SQL dùng để tạo ra các báo cáo tổng hợp dữ liệu. 
 -- Cụ thể, ROLLUP được sử dụng để tính toán các tổng hợp cấp cao hơn cho một tập 
 -- hợp các dữ liệu đã được nhóm. Nó sẽ tạo ra các kết quả tổng hợp theo từng cấp 
@@ -625,21 +623,21 @@ group by order_date with rollup;
 select count(transaction_id) as '# of orders', customer_id
 from transactions
 group by customer_id with rollup;
+
+
+/* define on delete
+Trong SQL, khi tạo khóa ngoại (foreign key) giữa hai bảng, chúng ta có thể sử dụng 
+cú pháp "ON DELETE" để xác định hành động sẽ được thực hiện khi có một bản ghi bị 
+xóa khỏi bảng chứa khóa chính (primary key) được tham chiếu đến từ bảng khóa ngoại.
+
+Có 4 tùy chọn hành động mà ta có thể sử dụng với ON DELETE:
+
+CASCADE: Xóa tất cả các bản ghi liên quan trong bảng con khi xóa bản ghi trong bảng cha.
+SET NULL: Đặt giá trị của các cột khóa ngoại là NULL khi bản ghi trong bảng cha bị xóa.
+SET DEFAULT: Đặt giá trị của các cột khóa ngoại là giá trị mặc định được xác định trước 
+đó khi bản ghi trong bảng cha bị xóa.
+RESTRICT: Không cho phép xóa bản ghi trong bảng cha nếu có bản ghi con liên quan đến nó.
 */
-
-/* -- define on delete
--- Trong SQL, khi tạo khóa ngoại (foreign key) giữa hai bảng, chúng ta có thể sử dụng 
--- cú pháp "ON DELETE" để xác định hành động sẽ được thực hiện khi có một bản ghi bị 
--- xóa khỏi bảng chứa khóa chính (primary key) được tham chiếu đến từ bảng khóa ngoại.
-
--- Có 4 tùy chọn hành động mà ta có thể sử dụng với ON DELETE:
-
--- CASCADE: Xóa tất cả các bản ghi liên quan trong bảng con khi xóa bản ghi trong bảng cha.
--- SET NULL: Đặt giá trị của các cột khóa ngoại là NULL khi bản ghi trong bảng cha bị xóa.
--- SET DEFAULT: Đặt giá trị của các cột khóa ngoại là giá trị mặc định được xác định trước 
--- đó khi bản ghi trong bảng cha bị xóa.
--- RESTRICT: Không cho phép xóa bản ghi trong bảng cha nếu có bản ghi con liên quan đến nó.
-
 
 alter table transactions 
 drop foreign key transactions_ibfk_1;
@@ -673,15 +671,16 @@ delete from transactions
 where customer_id = 4;
 */
 
-/* -- STORED PROCEDURES:
--- Stored procedures là một khối lệnh SQL được lưu trữ trong cơ sở dữ liệu để thực hiện 
--- một tác vụ nhất định. Nó cho phép bạn tạo ra các chương trình riêng biệt trong cơ sở 
--- dữ liệu, tương tự như các chương trình riêng biệt trên máy tính. Stored procedures 
--- thường được sử dụng để giảm thiểu lượng mã lặp lại và tăng tốc độ xử lý của cơ sở dữ liệu.
+/* STORED PROCEDURES:
+Stored procedures là một khối lệnh SQL được lưu trữ trong cơ sở dữ liệu để thực hiện 
+một tác vụ nhất định. Nó cho phép bạn tạo ra các chương trình riêng biệt trong cơ sở 
+dữ liệu, tương tự như các chương trình riêng biệt trên máy tính. Stored procedures 
+thường được sử dụng để giảm thiểu lượng mã lặp lại và tăng tốc độ xử lý của cơ sở dữ liệu.
 
--- DELIMITER là một câu lệnh trong MySQL để xác định ký tự phân cách câu lệnh mới 
--- thay vì dấu chấm phẩy (;) mặc định. Điều này cho phép bạn viết các stored procedure 
--- hoặc function với nhiều câu lệnh mà không bị xem là nhiều câu lệnh riêng lẻ.
+DELIMITER là một câu lệnh trong MySQL để xác định ký tự phân cách câu lệnh mới 
+thay vì dấu chấm phẩy (;) mặc định. Điều này cho phép bạn viết các stored procedure 
+hoặc function với nhiều câu lệnh mà không bị xem là nhiều câu lệnh riêng lẻ.
+*/
 
 DELIMITER $$
 create procedure get_customers()
@@ -730,5 +729,3 @@ create procedure find_employee(
 DELIMITER ;
 
 call find_employee('An', 'Nguyen');
-*/
-
